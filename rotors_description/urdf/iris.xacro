@@ -48,6 +48,7 @@
     body_height="${body_height}"
     use_mesh_file="${use_mesh_file}"
     mesh_file="${mesh_file}"
+    color="DarkGrey"
     >
     <xacro:insert_block name="body_inertia" />
   </xacro:multirotor_base_macro>
@@ -68,7 +69,7 @@
     motor_number="0"
     rotor_drag_coefficient="${rotor_drag_coefficient}"
     rolling_moment_coefficient="${rolling_moment_coefficient}"
-    color="Blue"
+    color="DarkGrey"
     use_own_mesh="false"
     mesh="">
     <origin xyz="${arm_length_front_x} -${arm_length_front_y} ${rotor_offset_top}" rpy="0 0 0" />
@@ -90,7 +91,7 @@
     motor_number="1"
     rotor_drag_coefficient="${rotor_drag_coefficient}"
     rolling_moment_coefficient="${rolling_moment_coefficient}"
-    color="Red"
+    color="DarkGrey"
     use_own_mesh="false"
     mesh="">
     <origin xyz="-${arm_length_back_x} ${arm_length_back_y} ${rotor_offset_top}" rpy="0 0 0" />
@@ -111,7 +112,7 @@
     motor_number="2"
     rotor_drag_coefficient="${rotor_drag_coefficient}"
     rolling_moment_coefficient="${rolling_moment_coefficient}"
-    color="Blue"
+    color="DarkGrey"
     use_own_mesh="false"
     mesh="">
     <origin xyz="${arm_length_front_x} ${arm_length_front_y} ${rotor_offset_top}" rpy="0 0 0" />
@@ -132,7 +133,7 @@
     motor_number="3"
     rotor_drag_coefficient="${rotor_drag_coefficient}"
     rolling_moment_coefficient="${rolling_moment_coefficient}"
-    color="Red"
+    color="DarkGrey"
     use_own_mesh="false"
     mesh="">
     <origin xyz="-${arm_length_back_x} -${arm_length_back_y} ${rotor_offset_top}" rpy="0 0 0" />
