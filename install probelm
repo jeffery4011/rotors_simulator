@@ -1,0 +1,9 @@
+when you are doing "catkin_build" step, you probably will get this error:
+"Could not find a package configuration file provided by "geographic_msgs""
+
+you need to install "geographic_msgs" by "sudo apt-get install ros-kinetic-geographic-msgs"
+
+
+You also will get this :      error: ‘struct mavlink::common::msg::ODOMETRY’ has no member named ‘twist_covariance’
+You can find file name odom.cpp   in catkin_ws/src/mavros/mavros_extras/src/plugins/
+change the line 235  twist_covariance to velocity_covariance
