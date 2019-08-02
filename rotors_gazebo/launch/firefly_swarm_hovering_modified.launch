@@ -3,6 +3,8 @@
   <arg name="enable_logging" default="false"/>
   <arg name="enable_ground_truth" default="true"/>
   <arg name="mav_name" default="firefly" />
+  <arg name="laser_enabled" default="true"/>
+  <arg name="kinect_enabled" default="false"/>
 
   <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find rotors_gazebo)/models"/>
   <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find rotors_gazebo)/models"/>
@@ -131,6 +133,15 @@
     <node name="waypoint_publisher" pkg="rotors_gazebo" type="waypoint_publisher" output="screen" args="0 -1 1 0 4"/>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  </group>
+
+  <group ns="husky">
+  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+    <!--<arg name="robot_namespace" value="husky"/>-->
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+    <arg name="x" value="3"/>
+  </include>
   </group>
 
   
