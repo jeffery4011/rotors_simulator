@@ -9,7 +9,9 @@ add_definitions(-std=c++11)
 
 # We need Gazebo version >= 3.0.0 to generate iris.sdf file
 # (gz sdf ... command needs to be available)
-find_package(gazebo REQUIRED)
+find_package(gazebo REQUIRED
+  rospy
+)
 
 if(${gazebo_VERSION_MAJOR} GREATER 2)
     message(STATUS "Building iris.sdf.")
@@ -43,15 +45,21 @@ if(NO_ROS)
   return()
 endif()
 
-find_package(catkin REQUIRED COMPONENTS gazebo_msgs geometry_msgs mav_msgs roscpp sensor_msgs)
+find_package(catkin REQUIRED COMPONENTS gazebo_msgs geometry_msgs mav_msgs roscpp sensor_msgs rospy gazebo_msgs)
+
 
 catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES state_publisher
+#  CATKIN_DEPENDS rospy
+#  DEPENDS system_lib
   CATKIN_DEPENDS
     gazebo_msgs
     geometry_msgs
     mav_msgs
     roscpp
     sensor_msgs
+    rospy
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS})
@@ -67,6 +75,15 @@ add_dependencies(waypoint_publisher_file ${catkin_EXPORTED_TARGETS})
 add_executable(hovering_example src/hovering_example.cpp)
 target_link_libraries(hovering_example ${catkin_LIBRARIES})
 add_dependencies(hovering_example ${catkin_EXPORTED_TARGETS})
+
+add_executable(waypoint_publisher_file_modified src/waypoint_publisher_file_modified.cpp)
+target_link_libraries(waypoint_publisher_file_modified ${catkin_LIBRARIES})
+add_dependencies(waypoint_publisher_file_modified ${catkin_EXPORTED_TARGETS})
+
+
+
+
+
 
 foreach(dir launch models resource worlds)
    install(DIRECTORY ${dir}/
